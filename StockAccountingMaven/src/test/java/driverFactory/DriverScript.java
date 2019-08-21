@@ -10,13 +10,16 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+
 import commonFuncLibrary.FunctionLibrary;
 import utilities.ExcelFileUtil;
 
 public class DriverScript 
 {
 	static WebDriver driver;
-	ExtentReport report;
+	ExtentReports report;
 	ExtentTest logger;
 	
 	@Test
@@ -35,6 +38,7 @@ public class DriverScript
 					//Data for Module
 					String TCModule = excl.getData("MasterTestCases", i, 1);
 					report = new ExtentReports("D:\\Preeti Selenium Live Project\\StockAccountingMaven\\Reports\\"+TCModule+FunctionLibrary.generateDate()+".html");
+					logger = report.startTest(TCModule);
 					for(int j=1; j<=excl.rowCount(TCModule); j++)
 					{
 						String Description = excl.getData(TCModule, j, 0);
